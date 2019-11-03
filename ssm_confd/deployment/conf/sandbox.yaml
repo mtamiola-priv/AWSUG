@@ -1,0 +1,19 @@
+---
+deployment: tamima-awsug
+stacks_directory: "."
+aws:
+  region: eu-west-1
+s3:
+  stack_bucket: N/A
+
+stacks:
+  fargate-dependencies:
+    depends:
+  fargate-service:
+    depends:
+
+
+params:
+  CostCenter: '32201'
+  DeploymentType: development
+  ContactEmail: marcin.tamiola@f-secure.com

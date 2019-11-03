@@ -1,0 +1,8 @@
+[template]
+src = "nginx.conf.tmpl"
+dest = "/etc/nginx/sites-enabled/default"
+keys = [
+  "/awsug/"
+]
+
+reload_cmd = "/usr/sbin/service nginx reload"

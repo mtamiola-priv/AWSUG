@@ -1,0 +1,34 @@
+server {
+  listen       0.0.0.0:80;
+
+  access_log            /var/log/nginx/server.access.log combined;
+  error_log             /var/log/nginx/server.error.log {{ getv "/awsug/nginx/log/level" }};
+
+
+  location /images {
+  
+    {{range gets "/awsug/nginx/images/*"}}
+
+    location /images/{{base .Key}} {
+      proxy_pass {{.Value}};
+    }
+
+    {{end}}
+
+  }
+  
+  location /texts {
+  
+    {{range gets "/awsug/nginx/locations/*"}}
+
+    location /texts/{{base .Key}} {
+      default_type text/plain;
+      return 200 "{{.Value}}";
+    }
+
+    {{end}}
+
+  }
+
+
+}
